@@ -35,8 +35,8 @@ export default function ProfileGallery({ artists }: Props) {
               pb-2 text-lg font-medium transition-all duration-200 cursor-pointer
               ${
                 selected === i
-                  ? "border-b-2 border-primary-content text-primary-content"
-                  : "border-b-2 border-transparent hover:text-primary-content/70"
+                  ? "border-b-2 border-primary-content text-primary-content" // active
+                  : "border-b-2 border-transparent text-gray-700 hover:text-primary-content/80" // default + hover
               }
             `}
           >

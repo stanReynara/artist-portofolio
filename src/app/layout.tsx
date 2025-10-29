@@ -1,3 +1,4 @@
+import { Navbar } from "@components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -11,15 +12,18 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-theme="pastel">
-      <body
-        className={`
+      <body>
+        <Navbar />
+        <div
+          className={`
           antialiased 
           flex flex-col items-center justify-center
           min-h-screen
-          p-6 sm:p-10
+          p-6 sm:p-10 bg-base-100
         `}
-      >
-        {children}
+        >
+          {children}
+        </div>
       </body>
     </html>
   );

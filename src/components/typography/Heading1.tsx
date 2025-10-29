@@ -1,20 +1,20 @@
 import React from "react";
 
-type TitleProps = {
+type HeadingProps = {
   children: React.ReactNode;
   color?: string;
   className?: string; // optional extra classes
 };
 
-export default function Title({
+export default function Heading1({
   children,
   color = "text-primary-content",
   className = "",
-}: TitleProps) {
+}: HeadingProps) {
   return (
     <h1
       className={`
-        text-5xl md:text-6xl lg:text-7xl 
+        text-2xl md:text-3xl lg:text-4xl 
         font-bold 
         ${color}
         drop-shadow-lg 

@@ -40,7 +40,7 @@ const artists = [
 export default function Home() {
   return (
     <>
-      <div className="min-h-[400px] transition-all duration-300">
+      <div className="min-h-[300px] transition-all duration-300">
         <ProfileGallery artists={artists} />
       </div>
       <WorksTab />

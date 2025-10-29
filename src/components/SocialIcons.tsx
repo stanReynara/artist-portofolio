@@ -20,7 +20,7 @@ export default function SocialIcons({
           href={twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-sky-400 transition-colors"
+          className="hover:text-sky-400 transition-colors hover:bg-primary rounded-xl p-2"
         >
           <FaTwitter />
         </a>
@@ -30,7 +30,7 @@ export default function SocialIcons({
           href={youtube}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-red-500 transition-colors"
+          className="hover:text-red-500 transition-colors hover:bg-primary rounded-xl p-2"
         >
           <FaYoutube />
         </a>
@@ -40,7 +40,7 @@ export default function SocialIcons({
           href={twitch}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-purple-500 transition-colors"
+          className="hover:text-purple-500 transition-colors hover:bg-primary rounded-xl p-2"
         >
           <FaTwitch />
         </a>
@@ -50,7 +50,7 @@ export default function SocialIcons({
           href={instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-pink-400 transition-colors"
+          className="hover:text-pink-400 transition-colors hover:bg-primary rounded-xl p-2"
         >
           <FaInstagram />
         </a>
