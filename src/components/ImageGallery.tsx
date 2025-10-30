@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { animate, createScope, spring } from "animejs";
 import Image from "next/image";
+import { IoCloseOutline } from "react-icons/io5";
 
 type Props = {
   width?: number; // number of columns (1–6)
@@ -85,28 +86,43 @@ export default function ImageGallery({ width = 3, children }: Props) {
       {/* Gallery Grid */}
       <div className={`${columnsClass} gap-4`}>
         {Array.isArray(children)
-          ? children.map((child, index) => (
-              <div
-                key={index}
-                className="
-                  break-inside-avoid mb-4 overflow-hidden rounded-lg
-                  transition-transform duration-300 ease-out
-                  hover:scale-105 hover:z-10 cursor-pointer
-                  shadow-md hover:shadow-xl
-                "
-                onClick={() => {
-                  if (
-                    typeof child === "object" &&
-                    "props" in child &&
-                    child?.props?.src
-                  ) {
-                    setSelectedImage(child.props.src);
-                  }
-                }}
-              >
-                {child}
-              </div>
-            ))
+          ? children.map((child, index) => {
+              // Extract image props safely
+              const src = (child as any)?.props?.src || "";
+              const alt = (child as any)?.props?.alt || "";
+
+              return (
+                <div
+                  key={index}
+                  className="
+            group relative break-inside-avoid mb-4 overflow-hidden rounded-lg
+            transition-transform duration-300 ease-out
+            hover:scale-105 hover:z-10 cursor-pointer
+            shadow-md hover:shadow-xl
+          "
+                  onClick={() => {
+                    if (src) setSelectedImage(src);
+                  }}
+                >
+                  {/* Image */}
+                  {child}
+
+                  {/* Overlay */}
+                  <div
+                    className="
+              absolute inset-0 flex items-center justify-center
+              bg-black/0 group-hover:bg-black/60
+              opacity-0 group-hover:opacity-100
+              transition-all duration-300
+            "
+                  >
+                    <span className="text-white text-lg font-semibold">
+                      {alt}
+                    </span>
+                  </div>
+                </div>
+              );
+            })
           : children}
       </div>
 
@@ -115,11 +131,25 @@ export default function ImageGallery({ width = 3, children }: Props) {
         <div
           className="
       gallery-modal fixed inset-0 z-50 flex items-center justify-center
-      bg-black/70 backdrop-blur-sm
-      opacity-0
+      bg-black/70 backdrop-blur-sm opacity-0
     "
           onClick={handleClose}
         >
+          {/* Close button - positioned globally in the modal */}
+          <button
+            className="
+        absolute top-6 right-8 text-white text-4xl font-bold
+        hover:scale-110 transition z-60 cursor-pointer
+      "
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClose();
+            }}
+          >
+            <IoCloseOutline />
+          </button>
+
+          {/* Modal content */}
           <div className="gallery-modal-content relative max-w-5xl w-full p-4 transform-gpu">
             <Image
               src={selectedImage}
@@ -128,18 +158,6 @@ export default function ImageGallery({ width = 3, children }: Props) {
               height={800}
               className="mx-auto rounded-lg shadow-2xl max-h-[80vh] object-contain cursor-zoom-out"
             />
-            <button
-              className="
-          absolute top-4 right-6 text-white text-3xl font-bold
-          hover:scale-110 transition
-        "
-              onClick={(e) => {
-                e.stopPropagation();
-                handleClose();
-              }}
-            >
-              ✕
-            </button>
           </div>
         </div>
       )}

@@ -14,6 +14,8 @@
 /* 2️⃣ CSS variables for fonts */
 :root {
   --font-custom: "Chu_bby", sans-serif;
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -21,7 +23,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-custom); /* use custom font for sans */
+  --font-sans: var(--font-custom); /* keep custom font as main sans */
   --font-mono: var(--font-geist-mono);
 }
 
@@ -38,4 +40,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-custom), Arial, Helvetica, sans-serif;
+}
+
+/* 5️⃣ Override form fields to use system font */
+input,
+textarea,
+select,
+.label {
+  font-family: var(--font-system) !important;
 }

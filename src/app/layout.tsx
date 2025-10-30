@@ -14,14 +14,7 @@ export default function RootLayout({
     <html lang="en" data-theme="pastel">
       <body>
         <Navbar />
-        <div
-          className={`
-          antialiased 
-          flex flex-col items-center justify-center
-          min-h-screen
-          p-6 sm:p-10 bg-base-100
-        `}
-        >
+        <div className="antialiased min-h-screen p-6 sm:p-10 bg-base-100">
           {children}
         </div>
       </body>

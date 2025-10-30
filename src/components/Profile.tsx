@@ -10,7 +10,9 @@ type Props = {
     youtube?: string;
     twitch?: string;
     instagram?: string;
+    discord?: string;
   };
+  enableAvatar?: boolean;
 };
 
 export default function Profile({
@@ -19,15 +21,18 @@ export default function Profile({
   avatarUrl,
   description,
   socials,
+  enableAvatar = true,
 }: Props) {
   return (
     <div className="flex flex-col sm:flex-row items-center sm:items-start bg-base-200 rounded-xl shadow-md p-6 gap-8 w-full max-w-4xl">
       {/* Avatar */}
-      <div className="avatar shrink-0">
-        <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img src={avatarUrl} alt={`${name}'s avatar`} />
+      {enableAvatar ? (
+        <div className="avatar shrink-0">
+          <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src={avatarUrl} alt={`'s avatar`} />
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {/* Info */}
       <div className="flex-1 text-center sm:text-left text-base-content">

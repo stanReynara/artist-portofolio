@@ -1,10 +1,17 @@
-import { FaTwitter, FaYoutube, FaTwitch, FaInstagram } from "react-icons/fa";
+import {
+  FaTwitter,
+  FaYoutube,
+  FaTwitch,
+  FaInstagram,
+  FaDiscord,
+} from "react-icons/fa";
 
 type Props = {
   twitter?: string;
   youtube?: string;
   twitch?: string;
   instagram?: string;
+  discord?: string;
 };
 
 export default function SocialIcons({
@@ -12,6 +19,7 @@ export default function SocialIcons({
   youtube,
   twitch,
   instagram,
+  discord,
 }: Props) {
   return (
     <div className="flex space-x-4 mt-2 text-2xl">
@@ -53,6 +61,16 @@ export default function SocialIcons({
           className="hover:text-pink-400 transition-colors hover:bg-primary rounded-xl p-2"
         >
           <FaInstagram />
+        </a>
+      )}
+      {discord && (
+        <a
+          href={discord}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-indigo-500 transition-colors hover:bg-primary rounded-xl p-2"
+        >
+          <FaDiscord />
         </a>
       )}
     </div>

@@ -1,14 +1,16 @@
+"use client";
 import Image from "next/image";
-import Heading1 from "./typography/Heading1";
 import { NavbarItem } from "@components/NavbarItem";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
+  const router = useRouter();
   return (
     <div className="navbar bg-base-100 shadow-sm grid grid-cols-3 items-center">
       {/* LEFT SECTION */}
       <div className="flex justify-center items-center">
         <NavbarItem title="Home" destination="/" />
-        <NavbarItem title="Contacts" destination="/contacts" />
+        <NavbarItem title="Contact" destination="/contact" />
       </div>
 
       {/* MIDDLE SECTION (LOGO) */}
@@ -18,7 +20,8 @@ export function Navbar() {
           alt="Logo"
           width={60}
           height={60}
-          className="object-contain"
+          className="object-contain cursor-pointer"
+          onClick={() => router.push("/")}
         />
         <NavbarItem title="Group Name" destination="/" />
       </div>
