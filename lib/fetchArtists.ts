@@ -1,26 +1,12 @@
-import axios from "axios";
+import { fetchDataSourceFromNotion } from "./fetchFromNotion";
 
 export async function fetchArtists() {
-  const databaseId = process.env.NOTION_ARTIST_DB; // or use process.env.NOTION_ARTIST_DB
-  const notionKey = process.env.NOTION_SECRET!;
-
-  const url = `https://api.notion.com/v1/databases/${databaseId}/query`;
-
-  const response = await axios.post(
-    url,
-    {}, // empty body means "no filters"
-    {
-      headers: {
-        Authorization: `Bearer ${notionKey}`,
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28",
-      },
-    }
+  // console.log("Fetching artists from Notion...");
+  const response = await fetchDataSourceFromNotion(
+    "NOTION_ARTIST_DATASOURCE_ID"
   );
 
-  const data = response.data;
-
-  const artists = data.results.map((page: any) => {
+  const artists = response.results.map((page: any) => {
     const props = page.properties;
 
     // Name (title)
@@ -66,6 +52,8 @@ export async function fetchArtists() {
       socials: filteredSocials,
     };
   });
+
+  // console.log("Artists fetched:", JSON.stringify(artists, null, 2));
 
   return artists;
 }

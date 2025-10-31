@@ -1,41 +1,11 @@
 import { TextInput } from "@components/TextInput";
 import { Heading1 } from "@components/Typography";
 import Profile from "@components/Profile";
+import { fetchArtists } from "lib/fetchArtists";
 
+const artists = await fetchArtists();
 export default function Contact() {
   const groupEmail = "contact@artgroup.com";
-
-  const artists = [
-    {
-      name: "Mika Hoshino",
-      aliases: ["Mika", "HoshinoM"],
-      avatarUrl: "/images/stamp1.png",
-      description:
-        "An illustrator and VTuber known for soft pastel-themed art and cozy streams.",
-      socials: {
-        twitter: "https://twitter.com/mikahoshino",
-        youtube: "https://youtube.com/@mikahoshino",
-        twitch: "https://twitch.tv/mikahoshino",
-      },
-    },
-    {
-      name: "Zeno Kaze",
-      aliases: ["Zeno", "KazeZ"],
-      avatarUrl: "/images/stamp2.png",
-      description:
-        "A concept artist and designer who blends fantasy with modern elements.",
-      socials: {
-        twitter: "https://twitter.com/zenokaze",
-        instagram: "https://instagram.com/zenokaze",
-      },
-    },
-    {
-      name: "Mofy",
-      avatarUrl: "/images/stamp3.png",
-      description:
-        "Digital painter with a dreamy art style inspired by pastel tones and nature.",
-    },
-  ];
 
   return (
     // This wrapper resets the layout
@@ -60,7 +30,13 @@ export default function Contact() {
 
           <div className="flex flex-col items-center gap-8">
             {artists.map((artist) => (
-              <Profile key={artist.name} {...artist} enableAvatar={false} />
+              <Profile
+                key={artist.name}
+                {...artist}
+                // enableAvatar={false}
+                // enableAliases={false}
+                // enableDescription={false}
+              />
             ))}
           </div>
         </div>

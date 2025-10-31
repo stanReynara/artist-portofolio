@@ -13,6 +13,8 @@ type Props = {
     discord?: string;
   };
   enableAvatar?: boolean;
+  enableAliases?: boolean;
+  enableDescription?: boolean;
 };
 
 export default function Profile({
@@ -22,6 +24,8 @@ export default function Profile({
   description,
   socials,
   enableAvatar = true,
+  enableAliases = true,
+  enableDescription = true,
 }: Props) {
   return (
     <div className="flex flex-col sm:flex-row items-center sm:items-start bg-base-200 rounded-xl shadow-md p-6 gap-8 w-full max-w-4xl">
@@ -38,7 +42,7 @@ export default function Profile({
       <div className="flex-1 text-center sm:text-left text-base-content">
         <h2 className="text-3xl font-bold mb-1">{name}</h2>
 
-        {aliases && aliases.length > 0 && (
+        {aliases && aliases.length > 0 && enableAliases && (
           <p className="text-sm text-gray-500 mb-3">
             Also known as: {aliases.join(", ")}
           </p>
@@ -50,7 +54,9 @@ export default function Profile({
           </div>
         )}
 
-        <p className="text-base leading-relaxed">{description}</p>
+        {enableDescription ? (
+          <p className="text-base leading-relaxed">{description}</p>
+        ) : null}
       </div>
     </div>
   );
