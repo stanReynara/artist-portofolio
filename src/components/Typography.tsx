@@ -49,3 +49,24 @@ export function Heading1({
     </h1>
   );
 }
+
+export function Heading2({
+  children,
+  color = "text-primary-content",
+  className = "",
+}: TypographyProps) {
+  return (
+    <h2
+      className={`
+        text-lg md:text-xl lg:text-2xl 
+        font-bold 
+        ${color}
+        drop-shadow-lg 
+        tracking-wide 
+        ${className}
+      `}
+    >
+      {children}
+    </h2>
+  );
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "29feffad-e039-8005-83f6-e464aab55f17",
+    "projectName": "Commission 2",
+    "status": "Done",
+    "completion": 100
+  },
+  {
+    "id": "29feffad-e039-8032-b86a-de2c0cb73cc9",
+    "projectName": "Commission 4",
+    "status": "Canceled",
+    "completion": 0
+  },
+  {
+    "id": "29feffad-e039-803e-9abb-e9916e91eeec",
+    "projectName": "Commission 3",
+    "status": "Done",
+    "completion": 50
+  },
+  {
+    "id": "29feffad-e039-80dd-a568-f361c6fef121",
+    "projectName": "Commission 1",
+    "status": "WIP",
+    "completion": 75
+  }
+]

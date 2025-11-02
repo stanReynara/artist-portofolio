@@ -36,19 +36,19 @@ export async function fetchBlocksFromNotion(envKey: string): Promise<any[]> {
 
     const blocks: any[] = await Promise.all(
       response.results.map(async (block: BlockObjectResponse) => {
-        if (block.has_children) {
-          console.log(
-            `${"  ".repeat(depth)}🧩 Block "${block.id}" (${
-              block.type
-            }) has children — fetching deeper...`
-          );
-          const children = await getBlocksRecursively(block.id, depth + 1);
-          console.log(
-            `${"  ".repeat(depth)}📦 Children of ${block.id}:`,
-            JSON.stringify(children, null, 2)
-          );
-          return { ...block, children };
-        }
+        // if (block.has_children) {
+        //   console.log(
+        //     `${"  ".repeat(depth)}🧩 Block "${block.id}" (${
+        //       block.type
+        //     }) has children — fetching deeper...`
+        //   );
+        //   const children = await getBlocksRecursively(block.id, depth + 1);
+        //   console.log(
+        //     `${"  ".repeat(depth)}📦 Children of ${block.id}:`,
+        //     JSON.stringify(children, null, 2)
+        //   );
+        //   return { ...block, children };
+        // }
         return block;
       })
     );
@@ -56,8 +56,8 @@ export async function fetchBlocksFromNotion(envKey: string): Promise<any[]> {
     return blocks;
   }
 
-  console.log(`🚀 Fetching Notion blocks for envKey "${envKey}"...`);
+  // console.log(`🚀 Fetching Notion blocks for envKey "${envKey}"...`);
   const allBlocks = await getBlocksRecursively(blockId);
-  console.log(`✅ Finished fetching blocks (total: ${allBlocks.length})`);
+  // console.log(`✅ Finished fetching blocks (total: ${allBlocks.length})`);
   return allBlocks;
 }
