@@ -34,7 +34,7 @@ export default async function ProgressPage({
     return (
       <div className="p-8 text-center">
         <h1 className="text-2xl font-semibold text-neutral">Task not found</h1>
-        <p className="text-gray-500 mt-2">
+        <p className="text-neutral mt-2">
           No project found for ID: <code>{id}</code>
         </p>
       </div>
