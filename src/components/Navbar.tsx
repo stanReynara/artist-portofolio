@@ -29,7 +29,7 @@ export function Navbar() {
       {/* RIGHT SECTION */}
       <div className="flex flex-col justify-center items-center space-y-2">
         <NavbarItem title="T.O.S" destination="/tos" />
-        <NavbarItem title="Pricing" destination="/price" />
+        <NavbarItem title="Pricing" destination="/pricing" />
       </div>
     </div>
   );

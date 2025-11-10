@@ -61,3 +61,15 @@ export async function fetchBlocksFromNotion(envKey: string): Promise<any[]> {
   // console.log(`✅ Finished fetching blocks (total: ${allBlocks.length})`);
   return allBlocks;
 }
+
+// 👇 ADD THIS NEW FUNCTION
+export async function fetchPageFromNotion(pageId: string) {
+  try {
+    // This is the call you need to make
+    const response = await notion.pages.retrieve({ page_id: pageId });
+    return response;
+  } catch (error) {
+    console.error(`Failed to fetch page ${pageId}:`, error);
+    return null;
+  }
+}

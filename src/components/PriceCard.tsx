@@ -33,7 +33,7 @@ export default function PriceCard({
   }
 
   return (
-    <div className="card bg-base-100 w-96 shadow-sm overflow-hidden">
+    <div className="card bg-base-100 w-full shadow-sm overflow-hidden">
       <figure className="relative group">
         {/* DaisyUI carousel */}
         <div className="carousel w-full h-56">
