@@ -99,9 +99,9 @@ export async function fetchPricing(): Promise<PricingInfo[]> {
 
   if (!data?.results) return [];
 
-  console.log(
-    "✅ Fetched main commission data from Notion. Now fetching relations..."
-  );
+  // console.log(
+  //   "✅ Fetched main commission data from Notion. Now fetching relations..."
+  // );
 
   // We must use Promise.all to asynchronously process each page
   const pricingPromises = data.results.map(
@@ -161,7 +161,7 @@ export async function fetchPricing(): Promise<PricingInfo[]> {
   // Wait for all pages to be processed
   const pricingInfo = await Promise.all(pricingPromises);
 
-  console.log("✅ All data processed. Sorting list...");
+  // console.log("✅ All data processed. Sorting list...");
 
   // --- MODIFICATION: Sort the final array alphabetically by 'type' ---
   const sortedPricingInfo = pricingInfo.sort((a, b) =>

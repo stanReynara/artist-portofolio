@@ -48,7 +48,7 @@ export async function fetchTasks(): Promise<Task[]> {
     })
   );
 
-  console.log("✅ Fetched tasks from Notion", JSON.stringify(tasks, null, 2));
+  // console.log("✅ Fetched tasks from Notion", JSON.stringify(tasks, null, 2));
 
   return tasks;
 }

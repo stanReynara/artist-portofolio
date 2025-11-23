@@ -4,8 +4,8 @@ import { useId } from "react";
 type Props = {
   title: string;
   description: string;
-  price: string;
   images?: Image[];
+  variations?: Record<string, string>;
 };
 
 type Image = {
@@ -17,8 +17,8 @@ type Image = {
 export default function PriceCard({
   title,
   description,
-  price,
   images = [],
+  variations,
 }: Props) {
   const uniqueId = useId(); // 👈 ensures each card has a unique base ID
 
@@ -90,11 +90,26 @@ export default function PriceCard({
 
       <div className="card-body">
         <h2 className="card-title text-neutral">{title}</h2>
-        <p className="text-sm text-neutral">
-          {description}
-          <br />
-          {price}
-        </p>
+        <p className="text-sm text-neutral">{description}</p>
+
+        <br />
+        {/* Per line variations price */}
+        {variations && (
+          <div className="flex flex-col gap-1 mt-2">
+            {Object.entries(variations).map(([variant, cost]) => (
+              <div
+                key={variant}
+                className="flex justify-between items-center border-b border-neutral pb-1 last:border-none"
+              >
+                <span className="text-sm text-neutral">{variant}</span>
+                <div className="flex items-center gap-2">
+                  <span className="opacity-30 text-neutral">|</span>
+                  <span className="text-sm text-neutral">{cost}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Contact</button>
         </div>
