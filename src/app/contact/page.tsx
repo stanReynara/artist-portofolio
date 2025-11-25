@@ -3,6 +3,8 @@ import { Heading1 } from "@components/Typography";
 import Profile from "@components/Profile";
 import { fetchArtists } from "lib/fetchArtists";
 
+export const dynamic = "force-static";
+
 const artists = await fetchArtists();
 export default function Contact() {
   const groupEmail = "contact@artgroup.com";

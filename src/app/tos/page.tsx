@@ -1,6 +1,7 @@
 // app/tos/page.tsx
 import { fetchBlocksFromNotion } from "lib/fetchFromNotion";
-import { fetchTasks } from "lib/fetchTasks";
+
+export const dynamic = "force-static";
 
 export default async function TosPage() {
   const tos = await fetchBlocksFromNotion("NOTION_TOS_PAGE_ID");

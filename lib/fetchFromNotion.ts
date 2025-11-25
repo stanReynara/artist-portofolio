@@ -35,20 +35,17 @@ export async function fetchBlocksFromNotion(envKey: string): Promise<any[]> {
     const response = await notion.blocks.children.list({ block_id: blockId });
 
     const blocks: any[] = await Promise.all(
-      response.results.map(async (block: BlockObjectResponse) => {
+      response.results.map(async (block) => {
+        if (!("type" in block)) {
+          // Unsupported or partial block, just return it
+          return block;
+        }
+
         if (block.has_children) {
-          // console.log(
-          //   `${"  ".repeat(depth)}🧩 Block "${block.id}" (${
-          //     block.type
-          //   }) has children — fetching deeper...`
-          // );
           const children = await getBlocksRecursively(block.id, depth + 1);
-          // console.log(
-          //   `${"  ".repeat(depth)}📦 Children of ${block.id}:`,
-          //   JSON.stringify(children, null, 2)
-          // );
           return { ...block, children };
         }
+
         return block;
       })
     );

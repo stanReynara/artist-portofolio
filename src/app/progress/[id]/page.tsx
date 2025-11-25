@@ -2,6 +2,8 @@ import { Heading2 } from "@components/Typography";
 // import tasks from "@config/tasks.json";
 import { fetchTasks } from "lib/fetchTasks";
 import TaskCards from "@components/TasksCard";
+export const dynamic = "force-dynamic";
+
 type SubTask = {
   name: string;
   status: string;

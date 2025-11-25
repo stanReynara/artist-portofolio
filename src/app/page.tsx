@@ -3,8 +3,9 @@ import ProfileGallery from "@components/ProfileGallery";
 import { fetchArtists } from "lib/fetchArtists";
 import { fetchWorks } from "lib/fetchWorks";
 
+export const dynamic = "force-static";
+
 export default async function Home() {
-  // Dev build only, build/prod version should not fetch every page visit
   const artists = await fetchArtists();
   const works = await fetchWorks();
 
