@@ -46,7 +46,7 @@ export default function ProfileGallery({ artists }: Props) {
       </div>
 
       {/* Active Profile */}
-      <Profile {...artists[selected]} />
+      <Profile key={artists[selected].name} {...artists[selected]} />
     </div>
   );
 }
