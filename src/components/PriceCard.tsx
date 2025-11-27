@@ -1,5 +1,13 @@
 "use client";
+
 import { useId } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@components/components/ui/carousel";
 
 type Props = {
   title: string;
@@ -20,7 +28,7 @@ export default function PriceCard({
   images = [],
   variations,
 }: Props) {
-  const uniqueId = useId(); // 👈 ensures each card has a unique base ID
+  const uniqueId = useId();
 
   if (images.length === 0) {
     images = [
@@ -34,66 +42,52 @@ export default function PriceCard({
 
   return (
     <div className="card bg-base-100 w-full shadow-sm overflow-hidden">
-      <figure className="relative group">
-        {/* DaisyUI carousel */}
-        <div className="carousel w-full h-56">
-          {images.map((img, index) => {
-            const prev = index === 0 ? images.length - 1 : index - 1;
-            const next = (index + 1) % images.length;
-
-            return (
-              <div
-                key={index}
-                id={`${uniqueId}-slide${index + 1}`}
-                className="carousel-item relative w-full"
-              >
+      <div className="relative group">
+        {/* shadcn Carousel */}
+        <Carousel className="w-full h-56">
+          <CarouselContent>
+            {images.map((img, index) => (
+              <CarouselItem key={index}>
                 <img
                   src={img.src}
                   alt={img.description}
-                  className="w-full h-full object-cover"
+                  className="w-full h-56 object-cover select-none pointer-events-none"
                   draggable={false}
                 />
-
-                {/* DaisyUI native navigation using href */}
-                <div className="absolute inset-0 flex items-center justify-between px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={`#${uniqueId}-slide${prev + 1}`}
-                    className="btn btn-circle btn-sm bg-base-200/70 hover:bg-base-200/90 border-none"
-                  >
-                    ❮
-                  </a>
-                  <a
-                    href={`#${uniqueId}-slide${next + 1}`}
-                    className="btn btn-circle btn-sm bg-base-200/70 hover:bg-base-200/90 border-none"
-                  >
-                    ❯
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Indicators */}
-        {images.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-            {images.map((_, i) => (
-              <a
-                key={i}
-                href={`#${uniqueId}-slide${i + 1}`}
-                className="w-2 h-2 rounded-full bg-base-content/40 hover:bg-base-content/80 transition-all"
-              />
+              </CarouselItem>
             ))}
-          </div>
-        )}
-      </figure>
+          </CarouselContent>
 
+          {/* Hover buttons (shadcn) */}
+          {images.length > 1 && (
+            <>
+              <CarouselPrevious
+                className="
+                  absolute left-3 top-1/2 -translate-y-1/2 
+                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+                  bg-base-200/70 hover:bg-base-200/90 border-none w-8 h-8
+                "
+              />
+              <CarouselNext
+                className="
+                  absolute right-3 top-1/2 -translate-y-1/2 
+                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+                  bg-base-200/70 hover:bg-base-200/90 border-none w-8 h-8
+                "
+              />
+            </>
+          )}
+        </Carousel>
+      </div>
+
+      {/* Card Body */}
       <div className="card-body">
         <h2 className="card-title text-neutral">{title}</h2>
         <p className="text-sm text-neutral">{description}</p>
 
         <br />
-        {/* Per line variations price */}
+
+        {/* Variations */}
         {variations && (
           <div className="flex flex-col gap-1 mt-2">
             {Object.entries(variations).map(([variant, cost]) => (
@@ -110,6 +104,7 @@ export default function PriceCard({
             ))}
           </div>
         )}
+
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Contact</button>
         </div>
